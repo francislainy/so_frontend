@@ -1,13 +1,16 @@
 import './App.css';
-import FilterTagList from "./components/FilterTagList/FilterTagList";
-import PostList from "./components/PostList/PostList";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import Home from "./pages/Home/Home";
+import Post from "./pages/Post/Post";
 
 function App() {
     return (
-        <div className="App">
-            <FilterTagList/>
-            <PostList/>
-        </div>
+        <Router>
+            <Switch>
+                <Route path="/" exact component={Home}/>
+                <Route path="/post/:id" exact component={Post}/>
+            </Switch>
+        </Router>
     );
 }
 

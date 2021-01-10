@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 
 import PostItem from '../PostItem/PostItem'
 import {getQuestionList} from '../../api/api'
+import {port, url} from "../../helpers/Constants";
 
 // const data = [
 //     {id: 1, name: "Leanne Graham"},
@@ -27,8 +28,8 @@ function PostList() {
     useEffect(() => {
 
         const axiosParams = {
-            url: 'http://localhost',
-            port: 8081,
+            url: url,
+            port: port,
         }
 
         getQuestionList(axiosParams)
@@ -46,7 +47,7 @@ function PostList() {
 
     return (
         <ul>
-            {data.questions.map((item) => <PostItem key={item.id} value={item.title}/>)}
+            {data.questions.map((item) => <PostItem key={item.id} id={item.id} value={item.title}/>)}
         </ul>
     );
 }
