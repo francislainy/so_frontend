@@ -5,7 +5,7 @@ function Home() {
     return (
         <div className="App">
             <FilterTagList/>
-            <PostList/>
+            {/*<PostList/>*/}
         </div>
     );
 }

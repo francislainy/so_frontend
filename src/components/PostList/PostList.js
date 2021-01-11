@@ -11,7 +11,9 @@ import {port, url} from "../../helpers/Constants";
 //     {id: 4, name: "Patricia Lebsack"}
 // ];
 
-function PostList() {
+function PostList(props) {
+
+    console.log(props.tagItemId)
 
     const [data, setData] = useState(
         {
@@ -43,7 +45,6 @@ function PostList() {
         })
 
     }, [])
-
 
     return (
         <ul>
