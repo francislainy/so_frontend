@@ -15,7 +15,6 @@ function PostList(props) {
                     creationDate: 0
                 }
             ]
-
         });
 
     useEffect(() => {
