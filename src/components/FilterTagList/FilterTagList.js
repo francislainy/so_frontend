@@ -1,8 +1,7 @@
 import FilterTag from "../FilterTag/FilterTag";
 import {useState} from "react";
-import PostList from "../PostList/PostList";
 
-function FilterTagList() {
+function FilterTagList({activeItem}) {
 
     const [activeListItem, setActiveListItem] = useState({
         id: 1,
@@ -29,23 +28,23 @@ function FilterTagList() {
 
     const active = (item) => {
         setActiveListItem(item)
+        activeItem(item)
     }
 
     return <div>
         <div className="FilterTagList"
              style={styles.FilterTagList}>
-             {
+            {
                 data.map(i =>
                     <FilterTag
                         key={i.id}
                         item={i}
                         title={i.title}
-                        handleClick={(i) => handleClick(i)}
+                        handleClick={handleClick}
                         isSelected={activeListItem.id === i.id}
                     />)
             }
         </div>
-        <PostList tagItemId={activeListItem.id}/>
     </div>;
 }
 
