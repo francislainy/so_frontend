@@ -5,11 +5,9 @@ import PostList from "../PostList/PostList";
 function FilterTagList() {
 
     const [activeListItem, setActiveListItem] = useState({
-        "id": 1,
-        "title": "Interesting",
+        id: 1,
+        title: "Interesting",
     });
-    const [show, setShow] = useState(false)
-    // const [show, setShow] = useState(false)
 
     const [data] = useState([
         {id: 1, title: "Interesting"},
@@ -20,35 +18,34 @@ function FilterTagList() {
     ])
 
     const handleClick = (item) => activeListItem === item ?
-        activeEmpty() :
-        activeWithItem(item);
+        noActive() :
+        active(item);
 
-    const activeEmpty = () => {
-        setActiveListItem()
+    const noActive = () => {
+        const currentActiveItem = activeListItem
+        setActiveListItem() // Clear list of items so none of them is set to active
+        setActiveListItem(currentActiveItem) // We set the item to what it was so that the list is not left without any active item
     }
 
-    const activeWithItem = (item) => {
+    const active = (item) => {
         setActiveListItem(item)
-        setShow(true)
     }
 
     return <div>
         <div className="FilterTagList"
              style={styles.FilterTagList}>
-            {
+             {
                 data.map(i =>
                     <FilterTag
                         key={i.id}
                         item={i}
                         title={i.title}
-                        handleClick={handleClick}
+                        handleClick={(i) => handleClick(i)}
                         isSelected={activeListItem.id === i.id}
                     />)
             }
         </div>
-        {/*{show ? <PostList/> : ""}*/}
         <PostList tagItemId={activeListItem.id}/>
-
     </div>;
 }
 

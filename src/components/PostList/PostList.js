@@ -4,24 +4,15 @@ import PostItem from '../PostItem/PostItem'
 import {getQuestionList} from '../../api/api'
 import {port, url} from "../../helpers/Constants";
 
-// const data = [
-//     {id: 1, name: "Leanne Graham"},
-//     {id: 2, name: "Ervin Howell"},
-//     {id: 3, name: "Clementine Bauch"},
-//     {id: 4, name: "Patricia Lebsack"}
-// ];
-
 function PostList(props) {
-
-    console.log(props.tagItemId)
 
     const [data, setData] = useState(
         {
-            "questions": [
+            questions: [
                 {
-                    "id": "",
-                    "title": "",
-                    "creationDate": 0
+                    id: "1",
+                    title: "Interesting",
+                    creationDate: 0
                 }
             ]
 
@@ -44,7 +35,7 @@ function PostList(props) {
             console.log(reason + ' failure on retrieving question list')
         })
 
-    }, [])
+    }, [props.tagItemId])
 
     return (
         <ul>
