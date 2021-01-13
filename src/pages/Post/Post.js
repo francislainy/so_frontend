@@ -1,17 +1,20 @@
 import React, {useEffect, useState} from 'react';
+import Button from "react-bootstrap/Button";
+
 import {port, url} from "../../helpers/Constants";
 import {getQuestionItem} from "../../api/api";
 
+const {useHistory} = require('react-router-dom')
+
 function Post({match}) {
 
-    const [data, setData] = useState(
-        {
-            id: "",
-            title: "",
-            totalDownVotes: 0,
-            totalUpVotes: 1,
-            totalVotes: 1
-        });
+    let history = useHistory();
+
+    const handleClick = () => {
+        history.push(`/post/ask`);
+    }
+
+    const [data, setData] = useState({});
 
     useEffect(() => {
 
@@ -29,13 +32,16 @@ function Post({match}) {
                 }
             )
 
-    }, [])
+    }, [match.params.id])
 
     return (
         <div className="App">
-            {data.title !== '' && <div>
-                Hi from post detail {data.title}
-            </div>}
+             <h1>
+                 {data.title}
+            </h1>
+            <Button variant="outline-primary" onClick={handleClick} >
+                Ask Question
+            </Button>
         </div>
 
     );
