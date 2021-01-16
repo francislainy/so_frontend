@@ -2,40 +2,88 @@ import React, {useEffect, useState} from 'react';
 import Button from "react-bootstrap/Button";
 
 import {port, url} from "../../helpers/Constants";
-import {getQuestionItem} from "../../api/api";
+import {createQuestion} from "../../api/api";
+
+const moment = require("moment");
 
 function Ask() {
 
-    // const [data, setData] = useState({});
-    //
-    // useEffect(() => {
-    //
-    //     const axiosParams = {
-    //         url: url,
-    //         port: port,
-    //
-    //     }
-    //
-    //     getQuestionItem(axiosParams)
-    //
-    //         .then(({data}) => {
-    //
-    //                 setData({...data})
-    //             }
-    //         )
-    //
-    // }, [])
+    const initialValues = {
+        title: "",
+        description: "",
+    };
+
+    const [values, setValues] = useState(initialValues);
+    const [payload, setPayload] = useState({});
+
+    const handleChange = (e) => {
+
+        const {name, value} = e.target;
+
+        setValues({
+            ...values,
+            [name]: value,
+        });
+    }
+
+    useEffect(() => {
+        setPayload({
+            "title": `${values.title}`,
+            "creationDate": moment().unix(),
+            "description": `${values.description}`,
+        })
+    }, [values])
+
+    const handleClick = () => {
+
+        // set payload data based of state from input and textarea
+        const axiosParams = {
+            url: url,
+            port: port,
+            payload: payload
+        }
+
+        createQuestion(axiosParams, payload)
+
+            .then((response) => {
+                    // show success message ;
+                }
+            ).catch(function (error) {
+            if (error.response) {
+                console.log(error.response.data);
+                console.log(error.response.status);
+                console.log(error.response.headers);
+            }
+        });
+
+    }
 
     return (
-        <div className="Ask">
-            <h1>
-                data.title
-            </h1>
-            <Button variant="outline-primary" >
-                hello from ask
-            </Button>
+        <div className="Ask" style={{marginLeft: '20px'}}>
+            <div style={{flexDirection: 'column'}}>
+                <h1>
+                    Ask a public question
+                </h1>
+                <p>Title</p>
+                <input type="text"
+                       onChange={handleChange}
+                       name="title"
+                       value={values.title}/>
+                <br/>
+                <p>Body</p>
+                <textarea
+                    value={values.description}
+                    onChange={handleChange}
+                    name="description"
+                    rows={5}
+                    cols={5}
+                />
+                <br/>
+                <Button variant="outline-primary" onClick={handleClick}>
+                    Save
+                </Button>
+            </div>
         </div>
-
     );
 }
 

@@ -24,3 +24,17 @@ exports.getQuestionItem = endpoint => {
         headers: {Accept: "application/json"},
     })
 }
+
+exports.createQuestion = endpoint => {
+    const url = endpoint.url
+    const port = endpoint.port
+    const payload = endpoint.payload
+
+    return axios.request({
+        method: "POST",
+        baseURL: `${url}:${port}`,
+        data: payload,
+        url: `api/so/question`,
+        headers: {Accept: "application/json"},
+    })
+}
