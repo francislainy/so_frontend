@@ -1,0 +1,15 @@
+.buttons-container {
+    display: flex;
+}
+
+.button-left {
+    flex: 0 0 50%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.button-right {
+    /*flex: 0 0 50%;*/
+    /*display: flex;*/
+    /*justify-content: flex-end;*/
+}

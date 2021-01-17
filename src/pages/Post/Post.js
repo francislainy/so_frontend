@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import Button from "react-bootstrap/Button";
 
 import {port, url} from "../../helpers/Constants";
 import {getQuestionItem} from "../../api/api";
+import Ask from "../../components/Ask/Ask";
 
 const {useHistory} = require('react-router-dom')
 
@@ -36,12 +36,10 @@ function Post({match}) {
 
     return (
         <div className="App">
-             <h1>
-                 {data.title}
+            <h1>
+                {data.title}
             </h1>
-            <Button variant="outline-primary" onClick={handleClick} >
-                Ask Question
-            </Button>
+            <Ask onClick={handleClick}/>
         </div>
 
     );

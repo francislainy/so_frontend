@@ -1,8 +1,19 @@
 import FilterTagList from "../../components/FilterTagList/FilterTagList";
 import PostList from "../../components/PostList/PostList";
-import {useState} from "react";
+import React, {useState} from "react";
+import Ask from "../../components/Ask/Ask";
+
+import './Home.css';
+
+const {useHistory} = require('react-router-dom')
 
 function Home() {
+
+    let history = useHistory();
+
+    const handleClick = () => {
+        history.push(`/post/ask`);
+    }
 
     const [activeListItem, setActiveListItem] = useState({});
 
@@ -12,11 +23,14 @@ function Home() {
 
     return (
         <div className="Home">
-            <FilterTagList
-                tagItemId={activeListItem.id}
-                activeListItem={activeListItem}
-                activeItem={activeItem}
-            />
+            <div className="buttons-container">
+                <FilterTagList
+                    tagItemId={activeListItem.id}
+                    activeListItem={activeListItem}
+                    activeItem={activeItem}
+                />
+                <Ask class="button-right" onClick={handleClick} style={{flexDirection: 'row', background: 'red'}}/>
+            </div>
             <PostList
                 tagItemId={activeListItem.id}
             />
