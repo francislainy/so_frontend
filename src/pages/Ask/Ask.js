@@ -31,6 +31,7 @@ function Ask() {
             "title": `${values.title}`,
             "creationDate": moment().unix(),
             "description": `${values.description}`,
+            "userId": "85514581-cc50-4490-8612-6a288842ff64" //todo: remove hardcoding
         })
     }, [values])
 

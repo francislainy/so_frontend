@@ -7,7 +7,7 @@ exports.getQuestionList = endpoint => {
     return axios.request({
         method: "GET",
         baseURL: `${url}:${port}`,
-        url: "api/so/question",
+        url: "api/so/questions",
         headers: {Accept: "application/json"},
     })
 }
@@ -20,7 +20,7 @@ exports.getQuestionItem = endpoint => {
     return axios.request({
         method: "GET",
         baseURL: `${url}:${port}`,
-        url: `api/so/question/${id}`,
+        url: `api/so/questions/${id}`,
         headers: {Accept: "application/json"},
     })
 }
@@ -34,7 +34,7 @@ exports.createQuestion = endpoint => {
         method: "POST",
         baseURL: `${url}:${port}`,
         data: payload,
-        url: `api/so/question`,
+        url: `api/so/questions`,
         headers: {Accept: "application/json"},
     })
 }
