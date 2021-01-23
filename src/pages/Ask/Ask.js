@@ -5,8 +5,11 @@ import {port, url, userId} from "../../helpers/Constants";
 import {createQuestion} from "../../api/api";
 
 const moment = require("moment");
+const {useHistory} = require('react-router-dom')
 
 function Ask() {
+
+    let history = useHistory();
 
     const initialValues = {
         title: "",
@@ -31,7 +34,6 @@ function Ask() {
             "title": `${values.title}`,
             "creationDate": moment().unix(),
             "description": `${values.description}`,
-            "userId": userId
         })
     }, [values])
 
@@ -42,13 +44,14 @@ function Ask() {
             url: url,
             port: port,
             payload: payload,
-            userId: "85514581-cc50-4490-8612-6a288842ff64",
+            userId: userId,
         }
 
         createQuestion(axiosParams, payload)
 
             .then((response) => {
                     // show success message ;
+                    history.push(`/`);
                 }
             ).catch(function (error) {
             if (error.response) {
