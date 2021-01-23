@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
 
 import {port, url, userId} from "../../helpers/Constants";
-import {getQuestionItem} from "../../api/api";
+import {deleteQuestion, getQuestionItem} from "../../api/api";
 import Ask from "../../components/Ask/Ask";
+import Delete from "../../components/Delete/Delete";
 
 const {useHistory} = require('react-router-dom')
 
@@ -10,8 +11,27 @@ function Post({match}) {
 
     let history = useHistory();
 
-    const handleClick = () => {
+    const handleAsk = () => {
         history.push(`/post/ask`);
+    }
+
+    const handleDelete = () => {
+        const axiosParams = {
+            url: url,
+            port: port,
+            id: match.params.id,
+            userId: userId,
+        }
+
+        deleteQuestion(axiosParams)
+
+            .then(() => {
+
+                    console.log("question deleted");
+                    history.push(`/`);
+                }
+            )
+
     }
 
     const [data, setData] = useState({});
@@ -22,7 +42,7 @@ function Post({match}) {
             url: url,
             port: port,
             id: match.params.id,
-            userId: userId
+            userId: userId,
         }
 
         getQuestionItem(axiosParams)
@@ -33,7 +53,7 @@ function Post({match}) {
                 }
             )
 
-    }, [match.params.id])
+    }, [match.params.id]);
 
     return (
         <div className="App">
@@ -43,7 +63,8 @@ function Post({match}) {
             <h3>
                 {data.description}
             </h3>
-            <Ask onClick={handleClick}/>
+            <Ask onClick={handleAsk}/>
+            <Delete onClick={handleDelete}/>
         </div>
 
     );
