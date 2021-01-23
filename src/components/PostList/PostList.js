@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 
 import PostItem from '../PostItem/PostItem'
 import {getQuestionList} from '../../api/api'
-import {port, url} from "../../helpers/Constants";
+import {port, url, userId} from "../../helpers/Constants";
 
 function PostList(props) {
 
@@ -10,8 +10,8 @@ function PostList(props) {
         {
             questions: [
                 {
-                    id: "1",
-                    title: "Interesting",
+                    id: "",
+                    title: "",
                     creationDate: 0
                 }
             ]
@@ -22,6 +22,7 @@ function PostList(props) {
         const axiosParams = {
             url: url,
             port: port,
+            userId: userId
         }
 
         getQuestionList(axiosParams)

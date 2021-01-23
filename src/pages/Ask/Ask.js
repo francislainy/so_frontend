@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import Button from "react-bootstrap/Button";
 
-import {port, url} from "../../helpers/Constants";
+import {port, url, userId} from "../../helpers/Constants";
 import {createQuestion} from "../../api/api";
 
 const moment = require("moment");
@@ -31,7 +31,7 @@ function Ask() {
             "title": `${values.title}`,
             "creationDate": moment().unix(),
             "description": `${values.description}`,
-            "userId": "85514581-cc50-4490-8612-6a288842ff64" //todo: remove hardcoding
+            "userId": userId
         })
     }, [values])
 
@@ -41,7 +41,8 @@ function Ask() {
         const axiosParams = {
             url: url,
             port: port,
-            payload: payload
+            payload: payload,
+            userId: "85514581-cc50-4490-8612-6a288842ff64",
         }
 
         createQuestion(axiosParams, payload)

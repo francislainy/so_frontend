@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 
-import {port, url} from "../../helpers/Constants";
+import {port, url, userId} from "../../helpers/Constants";
 import {getQuestionItem} from "../../api/api";
 import Ask from "../../components/Ask/Ask";
 
@@ -21,7 +21,8 @@ function Post({match}) {
         const axiosParams = {
             url: url,
             port: port,
-            id: match.params.id
+            id: match.params.id,
+            userId: userId
         }
 
         getQuestionItem(axiosParams)
