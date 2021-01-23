@@ -64,7 +64,10 @@ function Post({match}) {
                 {data.description}
             </h3>
             <Ask onClick={handleAsk}/>
-            <Delete onClick={handleDelete}/>
+            {data.userId === userId &&
+            <Delete
+                onClick={handleDelete}/>
+            }
         </div>
 
     );
