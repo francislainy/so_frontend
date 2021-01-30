@@ -29,7 +29,7 @@ function Home() {
                     activeListItem={activeListItem}
                     activeItem={activeItem}
                 />
-                <Ask class="button-right" onClick={handleClick} style={{flexDirection: 'row', background: 'red'}}/>
+                <Ask onClick={handleClick} style={{flexDirection: 'row', background: 'red'}}/>
             </div>
             <PostList
                 tagItemId={activeListItem.id}

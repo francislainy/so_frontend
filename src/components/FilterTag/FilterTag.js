@@ -1,13 +1,14 @@
 import './FilterTag.css'
+import Button from "react-bootstrap/Button";
 
 function FilterTag(props) {
 
     return (
         <div className="FilterTag" onClick={() => props.handleClick(props.item)}>
-            {props.isSelected ? <div className="FilterTag" style={styles.Active}>
-                <p>{props.title}</p>
-            </div> : <div className="FilterTag" style={styles.Inactive}>
-                <p>{props.title}</p>
+            {props.isSelected ? <div className="FilterTag">
+                <Button style={styles.Active} className="custom-btn">{props.title}</Button>
+            </div> : <div className="FilterTag">
+                <Button style={styles.Inactive} className="custom-btn">{props.title}</Button>
             </div>
             }
         </div>
@@ -16,12 +17,11 @@ function FilterTag(props) {
 
 const styles = {
     Active: {
-        background: 'grey'
+        backgroundColor: 'orange'
     },
     Inactive: {
-        background: 'white'
-    }
-
+        backgroundColor: 'grey'
+    },
 }
 
 export default FilterTag;
